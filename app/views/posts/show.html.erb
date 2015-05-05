@@ -6,10 +6,19 @@
 
 <!-- Show the comments using partial _comment.html.erb --> 
 <h3>Comments:</h3>
+
+<!-- Pagination: see https://github.com/bootstrap-ruby/will_paginate-bootstrap -->
+<%= page_entries_info @comments %><br />
+<%= will_paginate @comments, renderer: BootstrapPagination::Rails %>
+
+<!-- Index display: http://stackoverflow.com/questions/4566620/getting-the-current-item-number-or-index-when-using-will-paginate-in-rails-app -->
+<%# count = @comments.total_entries - @comments.offset %>
+<% count = @comments.offset %>
+
 <table class="table">
   <thead>
   <tr>
-	<th>No.</th>
+    <th>No.</th>
     <th>Commenter</th>
     <th>Comment</th>
     <!-- Show, Edit & Destroy -->
@@ -26,7 +35,9 @@
   <!-- Comment count. Either will do. -->
   <!-- render partial: "comments/comment", collection: @post.comments -->
   <tbody>
-	  <%= render @post.comments %>
+    <%# = render @post.comments: mem killer! %>
+    <!-- Passes an arg to the partial. See http://www.jakobbeyer.de/optional-local-variables-in-ror -->
+    <%= render @comments, count: count %>
   </tbody>
 </table>
 

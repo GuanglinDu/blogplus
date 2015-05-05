@@ -4,10 +4,17 @@
     When rendering a collection of partials in Rails you can access a sneaky iteration counter
     from inside each partial using the partial name appended with _counter, which starts from 0.
   -->
-  <td><%= comment_counter + 1 %></td>
+  <%# = comment_counter + 1 %>
+  
+  <!-- See http://www.jakobbeyer.de/optional-local-variables-in-ror -->
+  <% count = 0 if local_assigns[:count].nil? %>
+  <% count = local_assigns.fetch :count, false %>
+  <% count ||= 0 %>  
+
+  <td><%= comment_counter + count + 1 %></td>
   <td>
-	  <!-- %= comment.commenter % -->
-      <a href="#" data-xeditable="true" data-pk="<%= comment.id %>" data-model="comment" data-name="commenter" data-url="<%= post_comment_path(@post, comment) %>" data-title="Commenter"><%= comment.commenter %></a>
+    <!-- %= comment.commenter % -->
+    <a href="#" data-xeditable="true" data-pk="<%= comment.id %>" data-model="comment" data-name="commenter" data-url="<%= post_comment_path(@post, comment) %>" data-title="Commenter"><%= comment.commenter %></a>
   </td>
   
   <td><%= comment.body %></td>
@@ -15,7 +22,7 @@
   <td><%= link_to 'Show' ,  [comment.post, comment] %></td> 
   <td><%= link_to 'Edit' , edit_post_comment_path(comment.post, comment) %></td> 
   <td><%= link_to 'Destroy',  [comment.post, comment] ,
-        method: :delete,
-        data: { confirm: 'Are you sure?' } %>
+    method: :delete,
+    data: { confirm: 'Are you sure?' } %>
   </td>
 </tr>

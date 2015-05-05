@@ -9,7 +9,8 @@ class PostsController < ApplicationController
   end
     
   def index
-    @posts = Post.all
+    #@posts = Post.all # mem killer in real apps
+    @posts = Post.paginate(page: params[:page], per_page: 5)
   end
 
   def create
@@ -44,7 +45,9 @@ class PostsController < ApplicationController
     end
   end
 
+  # Pagination: see https://github.com/bootstrap-ruby/will_paginate-bootstrap
   def show
+    @comments = Comment.where(post_id: @post.id).paginate(page: params[:page], per_page: 2)
     #@post = Post.find(params[:id]) # replaced by set_post
   end
 

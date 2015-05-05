@@ -14,6 +14,7 @@ Enhancements:
 * Add a comment counter (index) using the partial's undocumented method _counter (0-indexed);
 * The links are clearer than the original version, such as 'Back to Posts' instead of 'Back';
 * Add more comments and pointers where necessary.
+* Use gem will_paginate-bootstrap to paginate on May 5, 2015.
 
 Miscellaneous:
 -------

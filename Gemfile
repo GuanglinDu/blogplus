@@ -1,4 +1,6 @@
-source 'https://rubygems.org'
+#source 'https://rubygems.org'
+# If https above cannot work, try this
+source 'http://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 #gem 'rails', '4.0.3'
@@ -58,3 +60,7 @@ gem 'autoprefixer-rails'
 # Try this on Dec. 11, 2014 Thu with success.
 # See https://github.com/klenis/bootstrap-x-editable-rails-demo
 gem 'bootstrap-x-editable-rails'
+
+# Paginates with will_paginate-bootstrap
+# See https://github.com/bootstrap-ruby/will_paginate-bootstrap
+gem 'will_paginate-bootstrap'
