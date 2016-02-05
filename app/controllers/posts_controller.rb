@@ -2,7 +2,9 @@ class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
   
   # Authentication
-  http_basic_authenticate_with name: "test", password: "test", except: [:index, :show]
+  http_basic_authenticate_with name: "test",
+                               password: "test",
+                               except: [:index, :show]
 
   def new
     @post = Post.new
@@ -36,18 +38,23 @@ class PostsController < ApplicationController
   def update
     respond_to do |format|
       if @post.update(post_params)
-        format.html { redirect_to @post, notice: 'Post was successfully updated.' }
+        format.html {
+          redirect_to @post, notice: 'Post was successfully updated.'
+        }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
+        format.json {
+          render json: @post.errors, status: :unprocessable_entity
+        }
       end
     end
   end
 
   # Pagination: see https://github.com/bootstrap-ruby/will_paginate-bootstrap
   def show
-    @comments = Comment.where(post_id: @post.id).paginate(page: params[:page], per_page: 2)
+    @comments = Comment.where(post_id: @post.id)
+      .paginate(page: params[:page], per_page: 2)
     #@post = Post.find(params[:id]) # replaced by set_post
   end
 
@@ -60,13 +67,14 @@ class PostsController < ApplicationController
 
   private
   
-    # Use callbacks to share common setup or constraints between actions.
-    def set_post
-      @post = Post.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions
+  def set_post
+    @post = Post.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def post_params
-      params.require(:post).permit(:title, :text)
-    end
+  # Never trust parameters from the scary internet,
+  # only allow the white list through.
+  def post_params
+    params.require(:post).permit(:title, :text)
+  end
 end

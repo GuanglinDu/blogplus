@@ -2,11 +2,14 @@
  
 <%= render 'form' %>
  
-<!-- Back to the post list: posts GET /posts(.:format) posts#index, i.e., /posts/index.html -->
+<% if false %>
+  Back to the post list:
+  posts GET /posts(.:format) posts#index, i.e., /posts/index.html
+<% end %>
 <%= link_to 'Back to Posts', posts_path %>
 
-<!-- Back to the post: /posts/:post_id/ -->
-<% #= link_to 'Back', post_path(@post) %>
-<!-- /posts/:post_id/comments/ which doen't exist. -->
-<% # = link_to 'Comments', post_comments_path(@post) %>
+<%# Back to the post: /posts/:post_id/ %>
+<%# link_to 'Back', post_path(@post) %>
+<%# /posts/:post_id/comments/ which doen't exist. %>
+<%# link_to 'Comments', post_comments_path(@post) %>
 

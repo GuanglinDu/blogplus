@@ -1,56 +1,73 @@
 <h1>Listing posts</h1>
 
-<!-- Pagination: see https://github.com/bootstrap-ruby/will_paginate-bootstrap -->
+<%# Pagination: see https://github.com/bootstrap-ruby/will_paginate-bootstrap %>
 <%= page_entries_info @posts %><br />
 <%= will_paginate @posts, renderer: BootstrapPagination::Rails %>
 
-<!-- Index display: http://stackoverflow.com/questions/4566620/getting-the-current-item-number-or-index-when-using-will-paginate-in-rails-app -->
+<%# Index display http://goo.gl/T0kejH %>
 <%# count = @posts.total_entries - @posts.offset %>
 <% count = @posts.offset %>
 
 <table class="table table-condensed">
-  <thead>
-  <tr>
-    <th>No.</th>
-    <th>Title</th>
-    <th>Text</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-  </thead>
+<thead>
+<tr>
+  <th>No.</th>
+  <th>Title</th>
+  <th>Text</th>
+  <th></th>
+  <th></th>
+  <th></th>
+</tr>
+</thead>
 
-  <tbody>
-  <% @posts.each do |post| %>
-    <tr>
-      <td><%= count += 1 %></td>
-      <td>
-        <a href="#" data-xeditable="true" data-pk="<%= post.id %>" data-model="post" data-name="title" data-url="<%= post_url(post) %>" data-title="Post Title"><font color="000000"><%= post.title %></font></a>
-      </td>
-      <td>
-        <a href="#" data-xeditable="true" data-pk="<%= post.id %>" data-model="post" data-name="text" data-url="<%= post_url(post) %>" data-title="Post Text"><font color="000000"><%= post.text %></font></a>
-      </td>
-      <td><%= link_to 'Show', post,  class: 'btn btn-primary btn-xs' %></td>
-      <td>
-        <%= link_to edit_post_path(post),  class: 'btn btn-info btn-xs' do %>
-	  <i class="glyphicon glyphicon-edit"></i> Edit
-	<% end %>		  
-      </td>
-      <td>
-        <%= link_to  post_path(post), method: :delete, data: { confirm: 'Are you sure?' },  class: 'btn btn-danger btn-xs' do %>
- 	  <i class="glyphicon glyphicon-remove"></i> Destroy
-	<% end %>		  
-      </td>
-    </tr>
-  <% end %>
-  </tbody>
+<tbody>
+<% @posts.each do |post| %>
+  <tr>
+    <td><%= count += 1 %></td>
+    <td>
+      <a href="#" data-xeditable="true"
+                  data-pk="<%= post.id %>"
+                  data-model="post"
+                  data-name="title"
+                  data-url="<%= post_url(post) %>"
+                  data-title="Post Title">
+        <font color="000000"><%= post.title %></font>
+      </a>
+    </td>
+    <td>
+      <a href="#" data-xeditable="true"
+                  data-pk="<%= post.id %>"
+                  data-model="post"
+                  data-name="text"
+                  data-url="<%= post_url(post) %>"
+                  data-title="Post Text">
+        <font color="000000"><%= post.text %></font>
+      </a>
+    </td>
+    <td><%= link_to 'Show', post,  class: 'btn btn-primary btn-xs' %></td>
+    <td>
+      <%= link_to edit_post_path(post),  class: 'btn btn-info btn-xs' do %>
+        <i class="glyphicon glyphicon-edit"></i> Edit
+      <% end %>		  
+    </td>
+    <td>
+      <%= link_to post_path(post),
+                  method: :delete,
+                  data: { confirm: 'Are you sure?' },
+                  class: 'btn btn-danger btn-xs' do %>
+        <i class="glyphicon glyphicon-remove"></i> Destroy
+      <% end %>		  
+    </td>
+  </tr>
+<% end %>
+</tbody>
 </table>
 
 <%= page_entries_info @posts %><br />
 <%= will_paginate @posts, renderer: BootstrapPagination::Rails %>
 
 <div>
-  <!-- %= link_to 'New Post', new_post_path,  class: 'btn btn-success'  % --> 
+  <%# link_to 'New Post', new_post_path,  class: 'btn btn-success'  %> 
   <%= link_to root_path,  class: 'btn btn-success' do%>
     <i class="glyphicon glyphicon-home"></i> Home
   <% end %>        

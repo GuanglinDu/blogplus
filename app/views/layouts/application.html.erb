@@ -3,23 +3,27 @@
 
 <head>
   <title>Blogplus</title>
-  <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
-  <!-- if set true, it will conflict with the Bootstrap in-place editing
-    See https://howilearnedrails.wordpress.com/2014/08/17/how-to-remove-turbolinks-from-rails-4/
-    See also https://github.com/klenis/bootstrap-x-editable-rails/issues/8
-   -->
+  <%= stylesheet_link_tag "application",
+                          media: "all",
+                          "data-turbolinks-track" => true
+  %>
+  <% if false %>
+    if set true, it will conflict with the Bootstrap in-place editing.
+    See https://goo.gl/Y9TDx4
+    See also https://goo.gl/AgPTJw
+  <% end %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => false %>
   <%= csrf_meta_tags %>
 </head>
 
 <body>
-  <!-- Bootstrap navbar -->
+  <%# Bootstrap navbar %>
   <%= render 'shared/navigation' %>
 
   <div id="main-container" class="container">
     <div class="row">
       <div class="col-xs-3">
-        <h3>Blogplus + Bootstrap 3</h3>
+        <h3>Blogplus</h3>
       </div>
       <div class="col-xs-9">
         <%= yield %>
